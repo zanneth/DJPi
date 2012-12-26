@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <fmod/fmod.h>
 
 int main(int argc, char **argv)
 {

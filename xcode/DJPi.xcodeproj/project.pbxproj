@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0C82B872168BB8F300ADB9D1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B863168BB84800ADB9D1 /* main.cpp */; };
-		0C82B874168BBB0600ADB9D1 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C82B873168BBB0600ADB9D1 /* SDL.framework */; };
+		0C82B878168BBC1A00ADB9D1 /* audio_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */; };
+		0C82B888168BC1C400ADB9D1 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */; };
+		0C82B889168BC1C400ADB9D1 /* libfmodexL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,8 +27,18 @@
 
 /* Begin PBXFileReference section */
 		0C82B863168BB84800ADB9D1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		0C82B868168BB8B300ADB9D1 /* DJPi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DJPi; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C82B873168BBB0600ADB9D1 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		0C82B868168BB8B300ADB9D1 /* djpi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = djpi; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_manager.cpp; sourceTree = "<group>"; };
+		0C82B877168BBC1A00ADB9D1 /* audio_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_manager.h; sourceTree = "<group>"; };
+		0C82B87F168BC1B900ADB9D1 /* fmod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod.h; sourceTree = "<group>"; };
+		0C82B880168BC1B900ADB9D1 /* fmod.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fmod.hpp; sourceTree = "<group>"; };
+		0C82B881168BC1B900ADB9D1 /* fmod_codec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_codec.h; sourceTree = "<group>"; };
+		0C82B882168BC1B900ADB9D1 /* fmod_dsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_dsp.h; sourceTree = "<group>"; };
+		0C82B883168BC1B900ADB9D1 /* fmod_errors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_errors.h; sourceTree = "<group>"; };
+		0C82B884168BC1B900ADB9D1 /* fmod_memoryinfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_memoryinfo.h; sourceTree = "<group>"; };
+		0C82B885168BC1B900ADB9D1 /* fmod_output.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_output.h; sourceTree = "<group>"; };
+		0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodex.dylib; sourceTree = "<group>"; };
+		0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodexL.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C82B874168BBB0600ADB9D1 /* SDL.framework in Frameworks */,
+				0C82B888168BC1C400ADB9D1 /* libfmodex.dylib in Frameworks */,
+				0C82B889168BC1C400ADB9D1 /* libfmodexL.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +57,8 @@
 		0C82B85A168BB60900ADB9D1 = {
 			isa = PBXGroup;
 			children = (
+				0C82B87C168BC17600ADB9D1 /* include */,
+				0C82B87D168BC17600ADB9D1 /* lib */,
 				0C82B862168BB7BE00ADB9D1 /* src */,
 				0C82B875168BBB0F00ADB9D1 /* Libraries and Frameworks */,
 				0C82B869168BB8B300ADB9D1 /* Products */,
@@ -54,6 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				0C82B863168BB84800ADB9D1 /* main.cpp */,
+				0C82B877168BBC1A00ADB9D1 /* audio_manager.h */,
+				0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */,
 			);
 			name = src;
 			path = ../src;
@@ -62,7 +79,7 @@
 		0C82B869168BB8B300ADB9D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0C82B868168BB8B300ADB9D1 /* DJPi */,
+				0C82B868168BB8B300ADB9D1 /* djpi */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,17 +87,49 @@
 		0C82B875168BBB0F00ADB9D1 /* Libraries and Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C82B873168BBB0600ADB9D1 /* SDL.framework */,
 			);
 			name = "Libraries and Frameworks";
+			sourceTree = "<group>";
+		};
+		0C82B87C168BC17600ADB9D1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0C82B87E168BC1B900ADB9D1 /* fmod */,
+			);
+			name = include;
+			path = ../include;
+			sourceTree = "<group>";
+		};
+		0C82B87D168BC17600ADB9D1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */,
+				0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */,
+			);
+			name = lib;
+			path = ../lib;
+			sourceTree = "<group>";
+		};
+		0C82B87E168BC1B900ADB9D1 /* fmod */ = {
+			isa = PBXGroup;
+			children = (
+				0C82B87F168BC1B900ADB9D1 /* fmod.h */,
+				0C82B880168BC1B900ADB9D1 /* fmod.hpp */,
+				0C82B881168BC1B900ADB9D1 /* fmod_codec.h */,
+				0C82B882168BC1B900ADB9D1 /* fmod_dsp.h */,
+				0C82B883168BC1B900ADB9D1 /* fmod_errors.h */,
+				0C82B884168BC1B900ADB9D1 /* fmod_memoryinfo.h */,
+				0C82B885168BC1B900ADB9D1 /* fmod_output.h */,
+			);
+			path = fmod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0C82B867168BB8B300ADB9D1 /* DJPi */ = {
+		0C82B867168BB8B300ADB9D1 /* djpi */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0C82B86F168BB8B300ADB9D1 /* Build configuration list for PBXNativeTarget "DJPi" */;
+			buildConfigurationList = 0C82B86F168BB8B300ADB9D1 /* Build configuration list for PBXNativeTarget "djpi" */;
 			buildPhases = (
 				0C82B864168BB8B300ADB9D1 /* Sources */,
 				0C82B865168BB8B300ADB9D1 /* Frameworks */,
@@ -90,9 +139,9 @@
 			);
 			dependencies = (
 			);
-			name = DJPi;
+			name = djpi;
 			productName = DJPi;
-			productReference = 0C82B868168BB8B300ADB9D1 /* DJPi */;
+			productReference = 0C82B868168BB8B300ADB9D1 /* djpi */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -115,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0C82B867168BB8B300ADB9D1 /* DJPi */,
+				0C82B867168BB8B300ADB9D1 /* djpi */,
 			);
 		};
 /* End PBXProject section */
@@ -126,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C82B872168BB8F300ADB9D1 /* main.cpp in Sources */,
+				0C82B878168BBC1A00ADB9D1 /* audio_manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +207,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -171,9 +220,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_ROOT)/include";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROJECT_ROOT = "$(SRCROOT)/..";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -192,15 +244,17 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_ROOT)/include";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROJECT_ROOT = "$(SRCROOT)/..";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -217,7 +271,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0C82B86F168BB8B300ADB9D1 /* Build configuration list for PBXNativeTarget "DJPi" */ = {
+		0C82B86F168BB8B300ADB9D1 /* Build configuration list for PBXNativeTarget "djpi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0C82B870168BB8B300ADB9D1 /* Debug */,
