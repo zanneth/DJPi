@@ -11,17 +11,21 @@
 		0C82B878168BBC1A00ADB9D1 /* audio_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */; };
 		0C82B888168BC1C400ADB9D1 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */; };
 		0C82B889168BC1C400ADB9D1 /* libfmodexL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */; };
+		0C82B88C168BC5FB00ADB9D1 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B88A168BC5FB00ADB9D1 /* logger.cpp */; };
+		0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B88E168BD0FB00ADB9D1 /* track.cpp */; };
+		0C82B896168BF30700ADB9D1 /* test.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C82B892168BF2C500ADB9D1 /* test.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0C82B866168BB8B300ADB9D1 /* CopyFiles */ = {
+		0C82B895168BF2FA00ADB9D1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 7;
 			files = (
+				0C82B896168BF30700ADB9D1 /* test.mp3 in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -39,6 +43,11 @@
 		0C82B885168BC1B900ADB9D1 /* fmod_output.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_output.h; sourceTree = "<group>"; };
 		0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodex.dylib; sourceTree = "<group>"; };
 		0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodexL.dylib; sourceTree = "<group>"; };
+		0C82B88A168BC5FB00ADB9D1 /* logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
+		0C82B88B168BC5FB00ADB9D1 /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
+		0C82B88E168BD0FB00ADB9D1 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
+		0C82B88F168BD0FB00ADB9D1 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = track.h; sourceTree = "<group>"; };
+		0C82B892168BF2C500ADB9D1 /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +69,7 @@
 				0C82B87C168BC17600ADB9D1 /* include */,
 				0C82B87D168BC17600ADB9D1 /* lib */,
 				0C82B862168BB7BE00ADB9D1 /* src */,
+				0C82B891168BF2C500ADB9D1 /* resources */,
 				0C82B875168BBB0F00ADB9D1 /* Libraries and Frameworks */,
 				0C82B869168BB8B300ADB9D1 /* Products */,
 			);
@@ -71,6 +81,10 @@
 				0C82B863168BB84800ADB9D1 /* main.cpp */,
 				0C82B877168BBC1A00ADB9D1 /* audio_manager.h */,
 				0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */,
+				0C82B88B168BC5FB00ADB9D1 /* logger.h */,
+				0C82B88A168BC5FB00ADB9D1 /* logger.cpp */,
+				0C82B88F168BD0FB00ADB9D1 /* track.h */,
+				0C82B88E168BD0FB00ADB9D1 /* track.cpp */,
 			);
 			name = src;
 			path = ../src;
@@ -124,6 +138,15 @@
 			path = fmod;
 			sourceTree = "<group>";
 		};
+		0C82B891168BF2C500ADB9D1 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				0C82B892168BF2C500ADB9D1 /* test.mp3 */,
+			);
+			name = resources;
+			path = ../resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,7 +156,7 @@
 			buildPhases = (
 				0C82B864168BB8B300ADB9D1 /* Sources */,
 				0C82B865168BB8B300ADB9D1 /* Frameworks */,
-				0C82B866168BB8B300ADB9D1 /* CopyFiles */,
+				0C82B895168BF2FA00ADB9D1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -176,6 +199,8 @@
 			files = (
 				0C82B872168BB8F300ADB9D1 /* main.cpp in Sources */,
 				0C82B878168BBC1A00ADB9D1 /* audio_manager.cpp in Sources */,
+				0C82B88C168BC5FB00ADB9D1 /* logger.cpp in Sources */,
+				0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
