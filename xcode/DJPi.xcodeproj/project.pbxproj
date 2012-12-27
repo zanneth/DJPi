@@ -14,6 +14,7 @@
 		0C82B88C168BC5FB00ADB9D1 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B88A168BC5FB00ADB9D1 /* logger.cpp */; };
 		0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B88E168BD0FB00ADB9D1 /* track.cpp */; };
 		0C82B896168BF30700ADB9D1 /* test.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C82B892168BF2C500ADB9D1 /* test.mp3 */; };
+		0C82B899168C1C2300ADB9D1 /* input_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B897168C1C2300ADB9D1 /* input_manager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,8 @@
 		0C82B88E168BD0FB00ADB9D1 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		0C82B88F168BD0FB00ADB9D1 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = track.h; sourceTree = "<group>"; };
 		0C82B892168BF2C500ADB9D1 /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
+		0C82B897168C1C2300ADB9D1 /* input_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_manager.cpp; sourceTree = "<group>"; };
+		0C82B898168C1C2300ADB9D1 /* input_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_manager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 				0C82B863168BB84800ADB9D1 /* main.cpp */,
 				0C82B877168BBC1A00ADB9D1 /* audio_manager.h */,
 				0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */,
+				0C82B898168C1C2300ADB9D1 /* input_manager.h */,
+				0C82B897168C1C2300ADB9D1 /* input_manager.cpp */,
 				0C82B88B168BC5FB00ADB9D1 /* logger.h */,
 				0C82B88A168BC5FB00ADB9D1 /* logger.cpp */,
 				0C82B88F168BD0FB00ADB9D1 /* track.h */,
@@ -201,6 +206,7 @@
 				0C82B878168BBC1A00ADB9D1 /* audio_manager.cpp in Sources */,
 				0C82B88C168BC5FB00ADB9D1 /* logger.cpp in Sources */,
 				0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */,
+				0C82B899168C1C2300ADB9D1 /* input_manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

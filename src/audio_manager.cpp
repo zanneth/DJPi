@@ -20,7 +20,7 @@ AudioManager::AudioManager() :
     _audio_system(nullptr),
     _channel(nullptr),
     _current_track(nullptr),
-    _paused(true)
+    _playing(false)
 {
     FMOD_RESULT result = FMOD::System_Create(&_audio_system);
     if (result != FMOD_OK) {
@@ -39,6 +39,11 @@ AudioManager::AudioManager() :
 
 AudioManager::~AudioManager()
 {
+    if (_channel) {
+        _channel->stop();
+        _channel = nullptr;
+    }
+    
     if (_audio_system) {
         _audio_system->release();
         _audio_system = nullptr;
@@ -69,19 +74,25 @@ void AudioManager::play()
     }
     
     if (track.get()) {
-        FMOD::Sound *sound = track->_stream;
-        if (!sound) {
-            _load_track(track);
-            sound = track->_stream;
-        }
-        
-        FMOD::Channel *channel;
-        FMOD_RESULT result = _audio_system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
-        if (result == FMOD_OK) {
-            _paused = false;
-            _channel = channel;
+        if (_channel) {
+            _channel->setPaused(false);
+            _playing = true;
+        } else {
+            FMOD::Sound *sound = track->_stream;
+            if (!sound) {
+                _load_track(track);
+                sound = track->_stream;
+            }
             
-            Logger::Log("Playing track %s...", track->get_filename().c_str());
+            FMOD::Channel *channel;
+            FMOD_RESULT result = _audio_system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
+            if (result == FMOD_OK) {
+                _playing = true;
+                _current_track = track;
+                _channel = channel;
+                
+                Logger::Log("Playing track %s...", track->get_filename().c_str());
+            }
         }
     }
 }
@@ -90,13 +101,13 @@ void AudioManager::pause()
 {
     if (_channel) {
         _channel->setPaused(true);
+        _playing = false;
     }
 }
 
 bool AudioManager::is_playing()
 {
-    bool playing = false;
-    return _channel && _channel->isPlaying(&playing) == FMOD_OK && playing;
+    return _playing;
 }
 
 float AudioManager::get_volume()

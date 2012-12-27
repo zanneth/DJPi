@@ -43,7 +43,7 @@ protected:
     FMOD::Channel *_channel;
     std::queue<TrackRef> _track_queue;
     TrackRef _current_track;
-    bool _paused;
+    bool _playing;
 };
 
 } // namespace djpi
