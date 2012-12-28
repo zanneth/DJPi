@@ -39,6 +39,12 @@ AudioManager::AudioManager() :
 
 AudioManager::~AudioManager()
 {
+    // release all of our streams first
+    while (!_track_queue.empty()) {
+        _track_queue.pop();
+    }
+    _current_track = nullptr;
+    
     if (_channel) {
         _channel->stop();
         _channel = nullptr;
