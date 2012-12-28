@@ -16,6 +16,7 @@ namespace djpi {
 
 class AudioManager;
 class InputManager;
+struct KeyEvent;
 
 class Application {
 public:
@@ -28,15 +29,18 @@ public:
     
     // running
     void run();
+    void quit();
     
 private:
     void _enqueue_test_tracks();
+    void _handle_event(const KeyEvent &e);
     
 protected:
     std::vector<std::string> _arguments;
     time_t _start_time;
     std::shared_ptr<AudioManager> _audio;
     std::shared_ptr<InputManager> _input;
+    bool _kill_loop;
 };
 
 } // namespace djpi

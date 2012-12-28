@@ -12,13 +12,14 @@
 #include <termios.h>
 #include <unistd.h>
 
+#define MAX_EVENT_QUEUE_SIZE    100
+
 static bool __terminal_configured = false;
 static struct termios __original_opts;
 
 namespace djpi {
 
-InputManager::InputManager() :
-    _callback([](KeyEvent){})
+InputManager::InputManager()
 {
     if (!__terminal_configured) {
         _setup_terminal();
@@ -31,6 +32,8 @@ InputManager::~InputManager()
         _restore_terminal();
     }
 }
+
+#pragma mark - Updating
 
 void InputManager::update(time_t time)
 {
@@ -45,9 +48,25 @@ void InputManager::update(time_t time)
         read(STDIN_FILENO, &c, sizeof(c));
         
         KeyEvent e = { c, time };
-        _callback(e);
+        _enqueue_event(e);
     }
 }
+
+#pragma mark - Polling the Event Queue
+
+bool InputManager::poll_event(KeyEvent *event_out)
+{
+    bool has_event = false;
+    if (_event_queue.size() > 0) {
+        has_event = true;
+        KeyEvent evnt = _event_queue.front();
+        _event_queue.pop_front();
+        *event_out = evnt;
+    }
+    return has_event;
+}
+
+#pragma mark - Internal
 
 void InputManager::_setup_terminal()
 {
@@ -64,6 +83,15 @@ void InputManager::_restore_terminal()
 {
     tcsetattr(STDIN_FILENO, TCSANOW, &__original_opts);
     __terminal_configured = false;
+}
+
+void InputManager::_enqueue_event(const KeyEvent &event)
+{
+    if (_event_queue.size() >= MAX_EVENT_QUEUE_SIZE) {
+        _event_queue.pop_front();
+    }
+    
+    _event_queue.push_back(event);
 }
     
 } // namespace djpi

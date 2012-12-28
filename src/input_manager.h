@@ -7,6 +7,7 @@
  
 #pragma once
 
+#include <deque>
 #include <functional>
 #include <time.h>
 
@@ -17,8 +18,6 @@ struct KeyEvent {
     time_t timestamp;
 };
 
-typedef std::function<void(KeyEvent)> InputCallback;
-
 class InputManager {
 public:
     InputManager();
@@ -27,15 +26,16 @@ public:
     // update
     void update(time_t time);
     
-    // setting up event handlers
-    void set_callback(InputCallback callback) { _callback = callback; }
+    // polling the event queue
+    bool poll_event(KeyEvent *event_out);
     
 private:
     void _setup_terminal();
     void _restore_terminal();
+    void _enqueue_event(const KeyEvent &event);
     
 protected:
-    InputCallback _callback;
+    std::deque<KeyEvent> _event_queue;
 };
     
 } // namespace djpi
