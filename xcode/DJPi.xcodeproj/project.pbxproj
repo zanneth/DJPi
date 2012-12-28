@@ -15,6 +15,7 @@
 		0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B88E168BD0FB00ADB9D1 /* track.cpp */; };
 		0C82B896168BF30700ADB9D1 /* test.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C82B892168BF2C500ADB9D1 /* test.mp3 */; };
 		0C82B899168C1C2300ADB9D1 /* input_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B897168C1C2300ADB9D1 /* input_manager.cpp */; };
+		0CA74E4F168D2CEB00BC9CF6 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CA74E4D168D2CEB00BC9CF6 /* application.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,8 @@
 		0C82B892168BF2C500ADB9D1 /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
 		0C82B897168C1C2300ADB9D1 /* input_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_manager.cpp; sourceTree = "<group>"; };
 		0C82B898168C1C2300ADB9D1 /* input_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_manager.h; sourceTree = "<group>"; };
+		0CA74E4D168D2CEB00BC9CF6 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
+		0CA74E4E168D2CEB00BC9CF6 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				0C82B863168BB84800ADB9D1 /* main.cpp */,
+				0CA74E4E168D2CEB00BC9CF6 /* application.h */,
+				0CA74E4D168D2CEB00BC9CF6 /* application.cpp */,
 				0C82B877168BBC1A00ADB9D1 /* audio_manager.h */,
 				0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */,
 				0C82B898168C1C2300ADB9D1 /* input_manager.h */,
@@ -207,6 +212,7 @@
 				0C82B88C168BC5FB00ADB9D1 /* logger.cpp in Sources */,
 				0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */,
 				0C82B899168C1C2300ADB9D1 /* input_manager.cpp in Sources */,
+				0CA74E4F168D2CEB00BC9CF6 /* application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +315,7 @@
 				0C82B871168BB8B300ADB9D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
