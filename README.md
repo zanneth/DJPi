@@ -1,4 +1,5 @@
 DJPi
 ================================================================================
 
-MP3 player.
+Lightweight MP3 player designed to be used for the Raspberry Pi.
+
