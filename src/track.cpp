@@ -16,6 +16,11 @@ Track::Track(std::string filename) :
 
 Track::~Track()
 {
+    release_stream();
+}
+
+void Track::release_stream()
+{
     if (_stream) {
         _stream->release();
         _stream = nullptr;

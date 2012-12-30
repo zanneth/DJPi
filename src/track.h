@@ -21,6 +21,8 @@ public:
     
     // accessors
     std::string get_filename() const { return _filename; }
+    
+    void release_stream();
 
 protected:
     std::string _filename;

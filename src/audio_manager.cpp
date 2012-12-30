@@ -74,16 +74,16 @@ void AudioManager::clear_track_queue()
 
 void AudioManager::play()
 {
-    TrackRef track = _current_track;
-    if (!track.get()) {
-        track = _dequeue_track();
-    }
-    
-    if (track.get()) {
-        if (_channel) {
-            _channel->setPaused(false);
-            _playing = true;
-        } else {
+    if (_channel) {
+        _channel->setPaused(false);
+        _playing = true;
+    } else {
+        TrackRef track = _current_track;
+        if (!track.get()) {
+            track = _dequeue_track();
+        }
+        
+        if (track.get()) {
             FMOD::Sound *sound = track->_stream;
             if (!sound) {
                 _load_track(track);
@@ -99,6 +99,8 @@ void AudioManager::play()
                 
                 Logger::Log("Playing track %s...", track->get_filename().c_str());
             }
+        } else {
+            Logger::Log("Warning: no more tracks in queue.");
         }
     }
 }
@@ -108,6 +110,21 @@ void AudioManager::pause()
     if (_channel) {
         _channel->setPaused(true);
         _playing = false;
+    }
+}
+
+void AudioManager::stop()
+{
+    if (_channel) {
+        _channel->stop();
+        _channel = nullptr;
+        _playing = false;
+    }
+    
+    // reset the track queue
+    while (!_completed_tracks.empty()) {
+        TrackRef cmp_track = _completed_tracks.top(); _completed_tracks.pop();
+        _track_queue.push(cmp_track);
     }
 }
 
@@ -129,6 +146,33 @@ void AudioManager::set_volume(float vol)
 {
     if (_channel) {
         _channel->setVolume(vol);
+    }
+}
+
+void AudioManager::next_track()
+{
+    _complete_current_track();
+    
+    TrackRef next_track = _dequeue_track();
+    if (next_track.get()) {
+        _current_track = next_track;
+        play();
+    }
+}
+
+void AudioManager::previous_track()
+{
+    if (_completed_tracks.size() > 0) {
+        // release the stream and enqueue the current track
+        pause();
+        _current_track->release_stream();
+        enqueue_track(_current_track);
+        
+        // pop the the last track and play
+        _current_track = _completed_tracks.top(); _completed_tracks.pop();
+        play();
+    } else {
+        stop();
     }
 }
 
@@ -163,9 +207,25 @@ void AudioManager::_load_track(TrackRef track)
 
 TrackRef AudioManager::_dequeue_track()
 {
-    TrackRef track = _track_queue.front();
-    _track_queue.pop();
+    TrackRef track = nullptr;
+    if (_track_queue.size() > 0) {
+        track = _track_queue.front();
+        _track_queue.pop();
+    }
     return track;
+}
+
+void AudioManager::_complete_current_track()
+{
+    if (_current_track.get()) {
+        _current_track->release_stream();
+        _completed_tracks.push(_current_track);
+        _current_track = nullptr;
+    }
+    
+    if (_channel) {
+        _channel = nullptr;
+    }
 }
     
 } // namespace djpi
