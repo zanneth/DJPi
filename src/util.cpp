@@ -78,4 +78,16 @@ std::string Util::basename(std::string path)
     return basestr;
 }
 
+std::string Util::dirname(std::string path)
+{
+    std::string dir;
+    char *pathstr = strdup(path.c_str());
+    char *dirstr = ::dirname(pathstr);
+    if (pathstr != NULL) {
+        dir = dirstr;
+    }
+    
+    return dir;
+}
+
 } // namespace djpi

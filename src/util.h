@@ -18,6 +18,7 @@ public:
     static std::vector<std::string> list_directory(std::string path);
     static std::string filename_ext(std::string filename);
     static std::string basename(std::string path);
+    static std::string dirname(std::string path);
 };
 
 } // namespace djpi

@@ -156,6 +156,7 @@ void Application::_enqueue_tracks(std::string path)
         }
     } else if (AudioManager::supports_filename(path)) {
         track_filenames.push_back(Util::basename(path));
+        path = Util::dirname(path);
     }
     
     Logger::log("Playlist (%d):", track_filenames.size());
