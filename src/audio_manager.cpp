@@ -105,7 +105,7 @@ void AudioManager::play()
                 Logger::log("Playing track %s...", track_filename.c_str());
             }
         } else {
-            Logger::log_error("Warning: no more tracks in queue.");
+            Logger::log_error("No more tracks in queue.");
         }
     }
 }

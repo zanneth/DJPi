@@ -152,14 +152,18 @@ void Application::_enqueue_tracks(std::string path)
         for (auto filename : dir_contents) {
             if (AudioManager::supports_filename(filename)) {
                 track_filenames.push_back(filename);
+            } else {
+                Logger::log_error("Warning: %s is an unsupported file type.", filename.c_str());
             }
         }
     } else if (AudioManager::supports_filename(path)) {
         track_filenames.push_back(Util::basename(path));
         path = Util::dirname(path);
+    } else {
+        Logger::log_error("Warning: %s is an unsupported file type.", path.c_str());
     }
     
-    Logger::log("Playlist (%d):", track_filenames.size());
+    Logger::log("Playlist (%d total tracks):", track_filenames.size());
     for (auto track_filename : track_filenames) {
         Logger::log("\t%s", track_filename.c_str());
         std::string abspath = path + "/" + track_filename;
