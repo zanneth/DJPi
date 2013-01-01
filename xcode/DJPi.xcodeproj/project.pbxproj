@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0D2BBA1690B70C00E531EC /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C0D2BB81690B70C00E531EC /* util.cpp */; };
+		0C80A162169165CF00E8B612 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C80A1601691654700E8B612 /* libfmodex.dylib */; };
+		0C80A164169165E500E8B612 /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C80A1601691654700E8B612 /* libfmodex.dylib */; };
 		0C82B872168BB8F300ADB9D1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B863168BB84800ADB9D1 /* main.cpp */; };
 		0C82B878168BBC1A00ADB9D1 /* audio_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */; };
-		0C82B888168BC1C400ADB9D1 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */; };
-		0C82B889168BC1C400ADB9D1 /* libfmodexL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */; };
 		0C82B88C168BC5FB00ADB9D1 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B88A168BC5FB00ADB9D1 /* logger.cpp */; };
 		0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C82B88E168BD0FB00ADB9D1 /* track.cpp */; };
 		0C82B896168BF30700ADB9D1 /* test.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C82B892168BF2C500ADB9D1 /* test.mp3 */; };
@@ -19,6 +20,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0C80A163169165E200E8B612 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0C80A164169165E500E8B612 /* libfmodex.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0C82B895168BF2FA00ADB9D1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -32,6 +43,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C0D2BB81690B70C00E531EC /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		0C0D2BB91690B70C00E531EC /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		0C80A1601691654700E8B612 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodex.dylib; sourceTree = "<group>"; };
+		0C80A1691692CFAE00E8B612 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0C82B863168BB84800ADB9D1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0C82B868168BB8B300ADB9D1 /* djpi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = djpi; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C82B876168BBC1A00ADB9D1 /* audio_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_manager.cpp; sourceTree = "<group>"; };
@@ -43,8 +58,6 @@
 		0C82B883168BC1B900ADB9D1 /* fmod_errors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_errors.h; sourceTree = "<group>"; };
 		0C82B884168BC1B900ADB9D1 /* fmod_memoryinfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_memoryinfo.h; sourceTree = "<group>"; };
 		0C82B885168BC1B900ADB9D1 /* fmod_output.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fmod_output.h; sourceTree = "<group>"; };
-		0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodex.dylib; sourceTree = "<group>"; };
-		0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodexL.dylib; sourceTree = "<group>"; };
 		0C82B88A168BC5FB00ADB9D1 /* logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		0C82B88B168BC5FB00ADB9D1 /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
 		0C82B88E168BD0FB00ADB9D1 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
@@ -61,8 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C82B888168BC1C400ADB9D1 /* libfmodex.dylib in Frameworks */,
-				0C82B889168BC1C400ADB9D1 /* libfmodexL.dylib in Frameworks */,
+				0C80A162169165CF00E8B612 /* libfmodex.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,11 +84,11 @@
 		0C82B85A168BB60900ADB9D1 = {
 			isa = PBXGroup;
 			children = (
+				0C80A1691692CFAE00E8B612 /* README.md */,
 				0C82B87C168BC17600ADB9D1 /* include */,
 				0C82B87D168BC17600ADB9D1 /* lib */,
 				0C82B862168BB7BE00ADB9D1 /* src */,
 				0C82B891168BF2C500ADB9D1 /* resources */,
-				0C82B875168BBB0F00ADB9D1 /* Libraries and Frameworks */,
 				0C82B869168BB8B300ADB9D1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +107,8 @@
 				0C82B88A168BC5FB00ADB9D1 /* logger.cpp */,
 				0C82B88F168BD0FB00ADB9D1 /* track.h */,
 				0C82B88E168BD0FB00ADB9D1 /* track.cpp */,
+				0C0D2BB91690B70C00E531EC /* util.h */,
+				0C0D2BB81690B70C00E531EC /* util.cpp */,
 			);
 			name = src;
 			path = ../src;
@@ -106,13 +120,6 @@
 				0C82B868168BB8B300ADB9D1 /* djpi */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		0C82B875168BBB0F00ADB9D1 /* Libraries and Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Libraries and Frameworks";
 			sourceTree = "<group>";
 		};
 		0C82B87C168BC17600ADB9D1 /* include */ = {
@@ -127,8 +134,7 @@
 		0C82B87D168BC17600ADB9D1 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				0C82B886168BC1C400ADB9D1 /* libfmodex.dylib */,
-				0C82B887168BC1C400ADB9D1 /* libfmodexL.dylib */,
+				0C80A1601691654700E8B612 /* libfmodex.dylib */,
 			);
 			name = lib;
 			path = ../lib;
@@ -167,6 +173,7 @@
 				0C82B864168BB8B300ADB9D1 /* Sources */,
 				0C82B865168BB8B300ADB9D1 /* Frameworks */,
 				0C82B895168BF2FA00ADB9D1 /* CopyFiles */,
+				0C80A163169165E200E8B612 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -213,6 +220,7 @@
 				0C82B890168BD0FB00ADB9D1 /* track.cpp in Sources */,
 				0C82B899168C1C2300ADB9D1 /* input_manager.cpp in Sources */,
 				0CA74E4F168D2CEB00BC9CF6 /* application.cpp in Sources */,
+				0C0D2BBA1690B70C00E531EC /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

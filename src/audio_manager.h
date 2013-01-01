@@ -7,8 +7,9 @@
  
 #pragma once
 
+#include <cstring>
 #include <fmod/fmod.hpp>
-#include <queue>
+#include <deque>
 #include <stack>
 #include <time.h>
 #include "track.h"
@@ -23,6 +24,8 @@ public:
     // managing tracks
     void enqueue_track(TrackRef track);
     void clear_track_queue();
+    size_t get_queue_size();
+    TrackRef get_current_track() const { return _current_track; }
     
     // controlling playback
     void play();
@@ -37,6 +40,9 @@ public:
     // updating
     void update(time_t time);
     
+    // static methods
+    static bool supports_filename(std::string filename);
+    
 private:
     void _print_error(FMOD_RESULT result);
     void _load_track(TrackRef track);
@@ -46,7 +52,7 @@ private:
 protected:
     FMOD::System *_audio_system;
     FMOD::Channel *_channel;
-    std::queue<TrackRef> _track_queue;
+    std::deque<TrackRef> _track_queue;
     std::stack<TrackRef> _completed_tracks;
     TrackRef _current_track;
     bool _playing;

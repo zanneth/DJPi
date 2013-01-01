@@ -15,9 +15,9 @@ namespace djpi {
 
 class Logger {
 public:
-    static void Log(const char *format, ...);
-    static void LogError(const char *format, ...);
-    static void Logv(const char *format, va_list args, std::ostream *stream = &std::cout);
+    static void log(const char *format, ...);
+    static void log_error(const char *format, ...);
+    static void logv(const char *format, va_list args, std::ostream *stream = &std::cout);
 };
 
 } // namespace djpi

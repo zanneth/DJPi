@@ -32,8 +32,10 @@ public:
     void quit();
     
 private:
-    void _enqueue_test_tracks();
+    bool _parse_args(std::vector<std::string> &paths);
     void _handle_event(const KeyEvent &e);
+    void _enqueue_tracks(std::string path);
+    void _enqueue_test_tracks();
     
 protected:
     std::vector<std::string> _arguments;

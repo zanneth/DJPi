@@ -12,23 +12,23 @@
 
 namespace djpi {
 
-void Logger::Log(const char *format, ...)
+void Logger::log(const char *format, ...)
 {
     va_list args;
     va_start(args, format);
-    Logv(format, args);
+    logv(format, args);
     va_end(args);
 }
 
-void Logger::LogError(const char *format, ...)
+void Logger::log_error(const char *format, ...)
 {
     va_list args;
     va_start(args, format);
-    Logv(format, args, &std::cerr);
+    logv(format, args, &std::cerr);
     va_end(args);
 }
 
-void Logger::Logv(const char *format, va_list args, std::ostream *stream)
+void Logger::logv(const char *format, va_list args, std::ostream *stream)
 {
     char buf[BUFFER_SIZE];
     vsprintf(buf, format, args);

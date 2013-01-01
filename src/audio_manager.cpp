@@ -7,9 +7,12 @@
  
 #include "audio_manager.h"
 #include "logger.h"
+#include "util.h"
 
+#include <algorithm>
 #include <iostream>
 #include <fmod/fmod_errors.h>
+#include <set>
 #include <string>
 
 #define MAX_CHANNELS    100
@@ -40,9 +43,7 @@ AudioManager::AudioManager() :
 AudioManager::~AudioManager()
 {
     // release all of our streams first
-    while (!_track_queue.empty()) {
-        _track_queue.pop();
-    }
+    clear_track_queue();
     _current_track = nullptr;
     
     if (_channel) {
@@ -60,14 +61,17 @@ AudioManager::~AudioManager()
 
 void AudioManager::enqueue_track(TrackRef track)
 {
-    _track_queue.push(track);
+    _track_queue.push_back(track);
 }
 
 void AudioManager::clear_track_queue()
 {
-    while (!_track_queue.empty()) {
-        _track_queue.pop();
-    }
+    _track_queue.clear();
+}
+
+size_t AudioManager::get_queue_size()
+{
+    return _track_queue.size();
 }
 
 #pragma mark - Controlling Playback
@@ -97,10 +101,11 @@ void AudioManager::play()
                 _current_track = track;
                 _channel = channel;
                 
-                Logger::Log("Playing track %s...", track->get_filename().c_str());
+                std::string track_filename = Util::basename(track->get_filename());
+                Logger::log("Playing track %s...", track_filename.c_str());
             }
         } else {
-            Logger::Log("Warning: no more tracks in queue.");
+            Logger::log_error("Warning: no more tracks in queue.");
         }
     }
 }
@@ -124,7 +129,7 @@ void AudioManager::stop()
     // reset the track queue
     while (!_completed_tracks.empty()) {
         TrackRef cmp_track = _completed_tracks.top(); _completed_tracks.pop();
-        _track_queue.push(cmp_track);
+        _track_queue.push_front(cmp_track);
     }
 }
 
@@ -166,7 +171,8 @@ void AudioManager::previous_track()
         // release the stream and enqueue the current track
         pause();
         _current_track->release_stream();
-        enqueue_track(_current_track);
+        _channel = nullptr;
+        _track_queue.push_front(_current_track);
         
         // pop the the last track and play
         _current_track = _completed_tracks.top(); _completed_tracks.pop();
@@ -183,11 +189,31 @@ void AudioManager::update(time_t time)
     _audio_system->update();
 }
 
+#pragma mark - Static Methods
+
+bool AudioManager::supports_filename(std::string filename)
+{
+    static const char *__supported_exts[20] = {
+        "WAV", "AIFF", "MP3", "OGG", "ASX", "FLAC", "DLS", "ASF", "IT",
+        "MP2", "MOD", "RAW", "WAX", "WMA", "XM", "XMA", "S3M", "VAG", "GCADPCM", nullptr
+    };
+    static std::set<std::string> __compatibility_set;
+    if (__compatibility_set.size() == 0) {
+        for (unsigned i = 0; __supported_exts[i] != nullptr; ++i) {
+            __compatibility_set.insert(__supported_exts[i]);
+        }
+    }
+    
+    std::string extension = Util::filename_ext(filename);
+    std::transform(extension.begin(), extension.end(), extension.begin(), ::toupper);
+    return __compatibility_set.find(extension) != __compatibility_set.end();
+}
+
 #pragma mark - Internal
 
 void AudioManager::_print_error(FMOD_RESULT result)
 {
-    Logger::LogError("FMOD Error %d: %s", result, FMOD_ErrorString(result));
+    Logger::log_error("FMOD Error %d: %s", result, FMOD_ErrorString(result));
 }
 
 void AudioManager::_load_track(TrackRef track)
@@ -210,7 +236,7 @@ TrackRef AudioManager::_dequeue_track()
     TrackRef track = nullptr;
     if (_track_queue.size() > 0) {
         track = _track_queue.front();
-        _track_queue.pop();
+        _track_queue.pop_front();
     }
     return track;
 }
