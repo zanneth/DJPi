@@ -172,10 +172,4 @@ void Application::_enqueue_tracks(std::string path)
     }
 }
 
-void Application::_enqueue_test_tracks()
-{
-    TrackRef track(new Track("test.mp3"));
-    _audio->enqueue_track(track);
-}
-
 } // namespace djpi
