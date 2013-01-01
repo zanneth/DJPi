@@ -193,20 +193,14 @@ void AudioManager::update(time_t time)
 
 bool AudioManager::supports_filename(std::string filename)
 {
-    static const char *__supported_exts[20] = {
+    static std::set<std::string> __supported_exts = {
         "WAV", "AIFF", "MP3", "OGG", "ASX", "FLAC", "DLS", "ASF", "IT",
-        "MP2", "MOD", "RAW", "WAX", "WMA", "XM", "XMA", "S3M", "VAG", "GCADPCM", nullptr
+        "MP2", "MOD", "RAW", "WAX", "WMA", "XM", "XMA", "S3M", "VAG", "GCADPCM"
     };
-    static std::set<std::string> __compatibility_set;
-    if (__compatibility_set.size() == 0) {
-        for (unsigned i = 0; __supported_exts[i] != nullptr; ++i) {
-            __compatibility_set.insert(__supported_exts[i]);
-        }
-    }
     
     std::string extension = Util::filename_ext(filename);
     std::transform(extension.begin(), extension.end(), extension.begin(), ::toupper);
-    return __compatibility_set.find(extension) != __compatibility_set.end();
+    return __supported_exts.find(extension) != __supported_exts.end();
 }
 
 #pragma mark - Internal
