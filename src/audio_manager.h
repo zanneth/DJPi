@@ -40,6 +40,9 @@ public:
     // updating
     void update(time_t time);
     
+    // callbacks
+    void track_completion_callback(FMOD::Channel *channel);
+    
     // static methods
     static bool supports_filename(std::string filename);
     

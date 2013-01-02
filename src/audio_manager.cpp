@@ -17,6 +17,11 @@
 
 #define MAX_CHANNELS    100
 
+static FMOD_RESULT F_CALLBACK __channel_callback(FMOD_CHANNEL *channel,
+                                                 FMOD_CHANNEL_CALLBACKTYPE type,
+                                                 void *commanddata1,
+                                                 void *commanddata2);
+
 namespace djpi {
 
 AudioManager::AudioManager() :
@@ -97,10 +102,16 @@ void AudioManager::play()
             FMOD::Channel *channel;
             FMOD_RESULT result = _audio_system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
             if (result == FMOD_OK) {
+                // configure the channel
+                channel->setUserData(this);
+                channel->setCallback(__channel_callback);
+                
+                // store related memory
                 _playing = true;
                 _current_track = track;
                 _channel = channel;
                 
+                // log current track
                 std::string track_filename = Util::basename(track->get_filename());
                 Logger::log("Playing track %s...", track_filename.c_str());
             }
@@ -189,6 +200,17 @@ void AudioManager::update(time_t time)
     _audio_system->update();
 }
 
+#pragma mark - Callbacks
+
+void AudioManager::track_completion_callback(FMOD::Channel *channel)
+{
+    if (get_queue_size() > 0) {
+        next_track();
+    } else {
+        _complete_current_track();
+    }
+}
+
 #pragma mark - Static Methods
 
 bool AudioManager::supports_filename(std::string filename)
@@ -247,5 +269,23 @@ void AudioManager::_complete_current_track()
         _channel = nullptr;
     }
 }
-    
+
 } // namespace djpi
+
+static FMOD_RESULT F_CALLBACK __channel_callback(FMOD_CHANNEL *channel,
+                                                 FMOD_CHANNEL_CALLBACKTYPE type,
+                                                 void *commanddata1,
+                                                 void *commanddata2)
+{
+    djpi::AudioManager *audio = nullptr;
+    FMOD::Channel *cppchannel = (FMOD::Channel *) channel;
+    void *userdata = nullptr;
+    
+    cppchannel->getUserData(&userdata);
+    if (userdata && type == FMOD_CHANNEL_CALLBACKTYPE_END) {
+        audio = (djpi::AudioManager *) userdata;
+        audio->track_completion_callback(cppchannel);
+    }
+    
+    return FMOD_OK;
+}
