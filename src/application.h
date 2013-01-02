@@ -32,6 +32,8 @@ public:
     void quit();
     
 private:
+    void _print_header();
+    void _print_controls();
     bool _parse_args(std::vector<std::string> &paths);
     void _handle_event(const KeyEvent &e);
     void _enqueue_tracks(std::string path);

@@ -22,7 +22,16 @@
 static const char *__help =
     "DJPi -- Lightweight MP3 player.\n"
     "Usage: djpi <song directory>\n"
-    "Songs in the current directory will be played if no arguments are provided.\n";
+    "Songs in the current directory will be played if no arguments are provided.";
+
+static const char *__header = "=== DJPi ===";
+
+static const char *__controls =
+    "Controls:\n"
+    "   space   =   pause/play\n"
+    "   q       =   quit\n"
+    "   left/p  =   previous track\n"
+    "   right/n =   next track";
 
 namespace djpi {
 
@@ -43,6 +52,9 @@ Application::~Application()
 void Application::run()
 {
     _start_time = time(NULL);
+    
+    _print_header();
+    _print_controls();
     
     // parse CLI arguments
     std::vector<std::string> paths;
@@ -90,6 +102,16 @@ void Application::quit()
 }
 
 #pragma mark - Internal
+
+void Application::_print_controls()
+{
+    Logger::log(__controls);
+}
+
+void Application::_print_header()
+{
+    Logger::log(__header);
+}
 
 bool Application::_parse_args(std::vector<std::string> &paths)
 {
@@ -150,10 +172,12 @@ void Application::_enqueue_tracks(std::string path)
     if (Util::is_directory(path)) {
         std::vector<std::string> dir_contents = Util::list_directory(path);
         for (auto filename : dir_contents) {
-            if (AudioManager::supports_filename(filename)) {
-                track_filenames.push_back(filename);
-            } else {
-                Logger::log_error("Warning: %s is an unsupported file type.", filename.c_str());
+            if (!Util::is_directory(path + "/" + filename)) {
+                if (AudioManager::supports_filename(filename)) {
+                    track_filenames.push_back(filename);
+                } else {
+                    Logger::log_error("Warning: %s is an unsupported file type.", filename.c_str());
+                }
             }
         }
     } else if (AudioManager::supports_filename(path)) {
